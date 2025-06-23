@@ -5,34 +5,86 @@
   <title>Chúc mừng sinh nhật!</title>
   <style>
     body {
+      margin: 0;
+      overflow: hidden;
       text-align: center;
-      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      background: linear-gradient(to right, #4a0000, #990000);
       font-family: 'Comic Sans MS', cursive;
       color: #fff;
     }
     h1 {
-      font-size: 3em;
+      font-size: 4em;
       margin-top: 50px;
+      animation: glow 1s ease-in-out infinite alternate;
+      z-index: 10;
+      position: relative;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff69b4; }
+      to { text-shadow: 0 0 20px #ff1493; }
     }
     p {
-      font-size: 1.5em;
+      font-size: 1.8em;
+      margin-top: 20px;
+      z-index: 10;
+      position: relative;
     }
     img {
-      width: 300px;
-      margin-top: 20px;
+      width: 350px;
+      margin-top: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #fff;
+      z-index: 10;
+      position: relative;
     }
-    .fireworks {
-      animation: sparkle 1.5s infinite alternate;
+    .balloon {
+      position: absolute;
+      width: 60px;
+      height: 80px;
+      background: radial-gradient(circle at 30% 30%, #ff6ec7, #d9006c);
+      border-radius: 50% 50% 45% 45%;
+      animation: float 10s linear infinite;
+      opacity: 0.8;
     }
-    @keyframes sparkle {
-      from { filter: brightness(1); }
-      to { filter: brightness(1.5); }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      20% { opacity: 1; }
+      100% {
+        transform: translateY(-200px) translateX(20px);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
-  <h1 class="fireworks">🎉 Chúc mừng sinh nhật Nguyễn Hồng Quang! 🎂</h1>
-  <img src="https://i.imgur.com/3RZgdYB.png" alt="Bánh sinh nhật">
+  <h1>🎉 Chúc mừng sinh nhật Nguyễn Hồng Quang! 🎂</h1>
+
+  <!-- Ảnh mèo -->
+  <img src="con meo.jpg" alt="Mèo chúc mừng sinh nhật">
+
   <p>Tuổi mới bớt ngủ nướng, bớt ăn hàng, nhưng thêm nhiều may mắn nha! 😆</p>
+
+  <!-- Nhạc sinh nhật -->
   <audio autoplay loop>
-    <source src="https://www.soundhel
+    <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+    Trình duyệt không hỗ trợ âm thanh.
+  </audio>
+
+  <!-- Hiệu ứng bóng bay -->
+  <script>
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      balloon.style.left = Math.random() * window.innerWidth + 'px';
+      balloon.style.animationDuration = 8 + Math.random() * 5 + 's';
+      balloon.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+      document.body.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 12000);
+    }
+    setInterval(createBalloon, 300);
+  </script>
+</body>
+</html>
